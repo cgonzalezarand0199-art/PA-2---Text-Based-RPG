@@ -19,8 +19,8 @@ private:
             return 0;
         }
         int total = 1;
-        for (int i = 0; i < scene->countScenes(); ++i) {
-            total += countScenes(scene->getScene(i));
+        for (int i = 0; i < scene->getNumChoices(); ++i) {
+            total += countScenes(scene->getChoice(i));
         }
         return total;
     }

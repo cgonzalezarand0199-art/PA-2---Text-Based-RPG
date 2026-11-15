@@ -1,6 +1,5 @@
 #include "Adventure.h"
 #include <iostream>
-
 // ===================== GIVEN HELPERS (do not change) =====================
 
 // Reads the next line that is not blank.
@@ -34,6 +33,7 @@ bool Adventure::readField(std::ifstream& in, const std::string& keyword, std::st
         std::cout << "Error: expected a " << keyword << " line but the file ended." << std::endl;
         return false;
     }
+
     std::string prefix = keyword + " ";
     if (line.substr(0, prefix.size()) != prefix) {
         std::cout << "Error: expected a " << keyword << " line but found: " << line << std::endl;
@@ -63,7 +63,23 @@ std::string Adventure::extendPath(const std::string& path, int choiceNumber) con
 //   - Build the whole story with readScene. The first scene's label is "START".
 //   - If anything failed, return false. Otherwise give the story to tree_.
 bool Adventure::load(const std::string& fileName) {
-    return false;
+    std::ifstream in(fileName);
+    if (!in.is_open()) {
+        std::cout << "Error: could not open file " << fileName << std::endl;
+        return false;
+    }
+
+    std::string val;
+    if (!readField(in, "START_HP", val)) {
+        return false;
+    }
+    startHp_ = std::stoi(val);
+    Scene<Moment>* root = readScene(in, "START");
+    if (root == nullptr) {
+        return false;
+    }
+    tree_.setRoot(root);
+    return true;
 }
 
 // TODO 11: read ONE scene and everything below it. Return it.
@@ -75,7 +91,40 @@ bool Adventure::load(const std::string& fileName) {
 //   - If anything goes wrong at any depth, return nullptr
 //     and make sure nothing you already built is leaked.
 Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label) {
-    return nullptr;
+    std::string text, hpStr, lootStr, item, choicesStr;
+    
+    if (!readField(in, "SCENE", text)) return nullptr;
+    if (!readField(in, "HP", hpStr)) return nullptr;
+    if (!readField(in, "LOOT", lootStr)) return nullptr;
+    if (!readField(in, "ITEM", item)) return nullptr;
+    if (!readField(in, "CHOICES", choicesStr)) return nullptr;
+
+    int hp = std::stoi(hpStr);
+    int loot = std::stoi(lootStr);
+    int numChoices = std::stoi(choicesStr);
+
+    if (numChoices < 0 || numChoices > Scene<Moment>::MAX_CHOICES) {
+        std::cout << "Error: scene \""  << text << "\" has " << numChoices << "." << std::endl
+                  << " choices. The limit is " << Scene<Moment>::MAX_CHOICES << "." << std::endl;
+        return nullptr;
+    }
+    Moment* moment = new Moment(text, label, hp, loot, item);
+    Scene<Moment>* scene = new Scene<Moment>(moment, numChoices);
+
+    for (int i = 0; i < numChoices; ++i) {
+        std::string childLabel;
+        if (!readField(in, "LABEL", childLabel)) {
+            delete scene;
+            return nullptr;
+        }
+        Scene<Moment>* child = readScene(in, childLabel);
+        if (child == nullptr) {
+            delete scene;
+            return nullptr;
+        }
+        scene->setChoice(i, child);
+    }
+    return scene;
 }
 
 // ===================== PLAYING =====================
