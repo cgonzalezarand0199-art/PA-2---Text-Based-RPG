@@ -32,6 +32,12 @@ LABEL Pass wide to your winger
             LOOT 0
             ITEM none
             CHOICES 0
+    LABEL Square the ball to a teammate
+            SCENE You draw two defenders toward you and square the ball across the box, creating a dangerous chance.
+            HP -5
+            LOOT 8
+            ITEM none
+            CHOICES 0
 
 LABEL Hold up play for the overlapping fullback
     SCENE You shield the ball from a heavy tackle and slip a pass to your overlapping fullback, who sends a high cross into the box.
@@ -52,7 +58,7 @@ LABEL Hold up play for the overlapping fullback
         HP -10
         LOOT 25
         ITEM none
-        CHOICES 2
+        CHOICES 1
 
         LABEL Sprint into space for a return pass
             SCENE Your striker threads a disguise through-ball to your feet, leaving you with only the goalkeeper to beat!
@@ -68,12 +74,18 @@ LABEL Hold up play for the overlapping fullback
                 ITEM Championship Trophy
                 CHOICES 0
 
-            LABEL Attempt a low-driven shot
-                SCENE You send a low shot toward the far corner, but the goalkeeper gets down quickly and pushes it wide.
-                HP -20
+            LABEL Take one more touch before shooting
+                SCENE You take one careful touch around the goalkeeper and steady yourself for the final shot.
+                HP -5
                 LOOT 5
                 ITEM none
-                CHOICES 0
+                CHOICES 1
+                    LABEL Attempt a low-driven shot
+                        SCENE You send a low shot toward the far corner, but the goalkeeper gets down quickly and pushes it wide.
+                        HP -20
+                        LOOT 5
+                        ITEM none
+                        CHOICES 0
 
 LABEL Dribble through the center
     SCENE You weave past two sliding tackles in the muddy midfield, taking a harsh kick to your shin.
