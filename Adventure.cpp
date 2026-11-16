@@ -105,8 +105,10 @@ Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label)
     int numChoices = std::stoi(choicesStr);
 
     if (numChoices < 0 || numChoices > Scene<Moment>::MAX_CHOICES) {
-        std::cout << "Error: scene \""  << text << "\" has " << numChoices << "." << std::endl
-                  << " choices. The limit is " << Scene<Moment>::MAX_CHOICES << "." << std::endl;
+        std::cout << "Error: scene \"" << text
+                  << "\" has " << numChoices
+                  << " choices. The limit is "
+                  << Scene<Moment>::MAX_CHOICES << "." << std::endl;
         return nullptr;
     }
     Moment* moment = new Moment(text, label, hp, loot, item);
@@ -149,10 +151,11 @@ int Adventure::askChoice(int numChoices) {
             if (pos == line.size() && choice >= 1 && choice <= numChoices) {
                 return choice;
             }
-        } catch (std::invalid_argument& e) {
+        } catch (const std::exception&) {
             std::cout << "Error: invalid choice " << line << std::endl;
         }
-        std::cout << "Please type a number from 1 to " << numChoices << "." << std::endl;
+        std::cout << "Please type a number from 1 to "
+                  << numChoices << "." << std::endl;
     }
 }
 
@@ -185,19 +188,19 @@ void Adventure::play() {
         Moment* m = curr->getData();
         hp += m-> getHpChange();
         loot += m-> getLoot();
-        std::cout << "-------------------------------------------" << std::endl;
+        std::cout << "----------------------------------------" << std::endl;
         std::cout << m->getText() << std::endl;
 
         if (m->getItem() != "none") {
             Item found(m->getItem());
             if (bag.search(found)) {
-                std::cout << "Your already have " << m->getItem() << std::endl;
+                std::cout << "You already have: " << m->getItem() << std::endl;
             } else {
                 bag.addFront(new Item(m->getItem()));
                 std::cout << "You picked up: " << m->getItem() << std::endl;
             }
         }
-        std::cout << "HP: " << hp << " Loot: " << loot << std::endl;
+        std::cout << "HP: " << hp << "  Loot: " << loot << std::endl;
         if (hp <= 0 ) {
             std:: cout << "Your HP hit 0. GAME OVER." << std::endl;
             break;
@@ -216,7 +219,7 @@ void Adventure::play() {
         }
         curr = curr -> getChoice(choice - 1);
     }
-    std::cout << "Final HP: " << hp << " Final Loot: " << loot << std::endl;
+    std::cout << "Final HP: " << hp << " Final loot: " << loot << std::endl;
     std::cout << "Inventory (" << bag.size()<< " items): " << std::endl;
     bag.print();
 }
@@ -229,8 +232,10 @@ void Adventure::play() {
 //   Longest playthrough: <height> choices
 void Adventure::printStats() const {
     std::cout << "Scenes: " << tree_.countScenes() << std::endl;
-    std::cout << "Ending: " << tree_.countEndings() << std::endl;
-    std::cout << "Longest playthrough: " << tree_.height() << "choices" << std::endl;
+    std::cout << "Endings: " << tree_.countEndings() << std::endl;
+    std::cout << "Longest playthrough: "
+              << tree_.height()
+              << " choices" << std::endl;
 }
 
 // TODO 15: print every ending in the story, one per line.
@@ -303,9 +308,11 @@ void Adventure::greedyRun() const {
         curr = curr->getChoice(bestIdx);
     }
     std::cout << "Greedy advisor"<< std::endl;
-    std::cout << "  Path: "<< (path.empty() ? "(start)" : path) << std::endl;
+    std::cout << "  Path: "
+              << (path.empty() ? "(start)" : path) << std::endl;
     std::cout << "  Loot: " << loot << std::endl;
-    std::cout << "  Result: "<< (died? "died" : "reached an ending") << std::endl;
+    std::cout << "  Result: "
+              << (died? "died" : "reached an ending") << std::endl;
 }
 
 // TODO 18: the best total loot you can collect from scene down to an ending,
@@ -357,10 +364,12 @@ void Adventure::optimalRun() const {
 
     std::cout << "Optimal advisor" << std::endl;
     if (totalLoot == -1) {
-        std:: cout << " Result: no path survives this story" << std::endl;
+        std:: cout << "  Result: no path survives this story" << std::endl;
     } else {
-        std:: cout << " Path: " << (bestPath.empty() ? "(start)" : bestPath) << std::endl;
-        std:: cout << " Loot: " << totalLoot << std::endl;
-        std:: cout << " Result: reached an ending" << std::endl;
+        std:: cout << "  Path: "
+                   << (bestPath.empty() ? "(start)" : bestPath)
+                   << std::endl;
+        std:: cout << "  Loot: " << totalLoot << std::endl;
+        std:: cout << "  Result: reached an ending" << std::endl;
     }
 }
