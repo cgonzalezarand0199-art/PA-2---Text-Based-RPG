@@ -141,7 +141,7 @@ Scene<Moment>* Adventure::readScene(std::ifstream& in, const std::string& label)
 int Adventure::askChoice(int numChoices) {
     std::string line;
     while (true) {
-        std::cout << "Your choice: " << std::endl;
+        std::cout << "Your choice: ";
         if (!std::getline(std::cin, line)) {
             return 0;
         }
@@ -152,7 +152,6 @@ int Adventure::askChoice(int numChoices) {
                 return choice;
             }
         } catch (const std::exception&) {
-            std::cout << "Error: invalid choice " << line << std::endl;
         }
         std::cout << "Please type a number from 1 to "
                   << numChoices << "." << std::endl;
