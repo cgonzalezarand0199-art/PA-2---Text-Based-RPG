@@ -10,7 +10,7 @@
 
 3. Walk through your Scene destructor. What gets deleted, and in what order? What would
    go wrong if choices_ were deleted first?
-- It first deletes data_, then it sometimes delete choices_[i] but data_ is always deleted first. If choices_ was deleted first pointers would lose childs scenes. 
+- It first deletes data_, then it sometimes delete choices_[i] but data_ is always deleted first. If choices_ was deleted first pointers would lose childs scenes and I believe it would cause a leak of all the childs scenes. 
 
 4. Show the path greedy took and the path optimal took on your story, with the loot for each.
    Explain why greedy lost. If greedy did not lose, change your story until it does, and explain
