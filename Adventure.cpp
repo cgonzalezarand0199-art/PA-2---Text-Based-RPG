@@ -193,7 +193,8 @@ void Adventure::play() {
         if (m->getItem() != "none") {
             Item found(m->getItem());
             if (bag.search(found)) {
-                std::cout << "You already have: " << m->getItem() << std::endl;
+                std::cout << "You already have: "
+                          << m->getItem() << std::endl;
             } else {
                 bag.addFront(new Item(m->getItem()));
                 std::cout << "You picked up: " << m->getItem() << std::endl;
@@ -218,7 +219,7 @@ void Adventure::play() {
         }
         curr = curr -> getChoice(choice - 1);
     }
-    std::cout << "Final HP: " << hp << " Final loot: " << loot << std::endl;
+    std::cout << "Final HP: " << hp << "  Final loot: " << loot << std::endl;
     std::cout << "Inventory (" << bag.size()<< " items): " << std::endl;
     bag.print();
 }

@@ -15,9 +15,8 @@
 4. Show the path greedy took and the path optimal took on your story, with the loot for each.
    Explain why greedy lost. If greedy did not lose, change your story until it does, and explain
    what you changed.
-- Greedy: Path 3-1, showboat with rainbow flick -> cuts inside on your weak foot ends with loot 70 and HP 70.
-- Optimal: Path 1-2-2-1-1, A wide pass -> holds up play -> passes a header -> sprints into space for a pass -> finesse shot ends with loot 155 and HP 60.
-
+- Greedy: Path 3-2-1, Dribbled through the center -> thread a through-ball -> keap the glory, collects 74 loot and 30 hp.
+- Optimal: Path 2-2-1-1-1, hold up play -> cushion a header -> sprint into space -> take one more touch -> finesse shot. It collects 150 loot and finishes with 60 HP.
 5. bestLoot tries every path, yet it runs in O(n) time. Explain why it is not exponential, using
    what you know about paths and leaves in a tree.
 -  I believe it's because in a tree there is only one path from the root to each node. Since subtress don't overlap bestLoot is able to visit the scenes in n times
