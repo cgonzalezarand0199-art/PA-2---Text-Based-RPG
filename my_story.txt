@@ -109,24 +109,3 @@ LABEL Dribble through the center
         LOOT 0
         ITEM Red Card
         CHOICES 0
-
-    LABEL Showboat with a rainbow flick
-        SCENE You flick the ball cleanly over the defender's heads as the crowd erupts, though the defense quickly recovers shape.
-        HP -10
-        LOOT 50
-        ITEM Highlight Reel
-        CHOICES 2
-
-        LABEL Cut inside on your weak foot
-            SCENE You chop past a lunging defender and curl a tidy finish inside the near post to seal a narrow victory!!
-            HP -20
-            LOOT 20
-            ITEM Winner Medal
-            CHOICES 0
-
-        LABEL Try another nutmeg
-            SCENE The defender reads your trick, steals the ball, and launches a counterattack that scores the winning goal against you!
-            HP -60
-            LOOT 0
-            ITEM none
-            CHOICES 0
