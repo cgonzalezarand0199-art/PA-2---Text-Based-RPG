@@ -1,6 +1,132 @@
-START_HP 10
-SCENE Replace this file with your own story.
+START_HP 100
+SCENE Stoppage time in the Cup Final. The score is tied 1-1. You receive the ball at midfield as defenders close in.
 HP 0
 LOOT 0
-ITEM none
-CHOICES 0
+ITEM Captain's Armband
+CHOICES 3
+
+LABEL Pass wide to your winger
+    SCENE Your winger sprints down the touchline and cuts the ball back to you at the edge of the box.
+    HP -5
+    LOOT 10
+    ITEM none
+    CHOICES 2
+
+    LABEL Fire a first-time volley
+        SCENE Your volley rockets toward the top corner, forcing a diving save that rebounds into the six-yard box!
+        HP -10
+        LOOT 15
+        ITEM none
+        CHOICES 2
+
+        LABEL Slide in for the tap-in
+            SCENE You stretch for the rebound and poke it into the net, colliding hard with the goalpost. Goal!
+            HP -45
+            LOOT 60
+            ITEM Match Ball
+            CHOICES 0
+
+        LABEL Blast a powerful shot straight ahead
+            SCENE Your thunderous strike hits the crossbar and bounces straight into your face, knocking you out cold!
+            HP -100
+            LOOT 0
+            ITEM none
+            CHOICES 0
+
+LABEL Hold up play for the overlapping fullback
+    SCENE You shield the ball from a heavy tackle and slip a pass to your overlapping fullback, who sends a high cross into the box.
+    HP -15
+    LOOT 20
+    ITEM none
+    CHOICES 2
+
+    LABEL Attempt a bicycle kick
+        SCENE You launch into the air for an acrobatic overhead kick, landing awkwardly on your shoulder as the ball sails wide!
+        HP -85
+        LOOT 0
+        ITEM none
+        CHOICES 0
+
+    LABEL Cushion a header to your striker
+        SCENE You nod the cross down into your striker's path, drawing two defenders toward you as the referee plays advantage.
+        HP -10
+        LOOT 25
+        ITEM none
+        CHOICES 2
+
+        LABEL Sprint into space for a return pass
+            SCENE Your striker threads a disguise through-ball to your feet, leaving you with only the goalkeeper to beat!
+            HP -10
+            LOOT 30
+            ITEM Golden Cleats
+            CHOICES 2
+
+            LABEL Finesse shot into the bottom corner
+                SCENE You calmly slot the ball past the goalkeeper's outstretched gloves. The whistle blows-you have won the Cup!
+                HP 0
+                LOOT 70
+                ITEM Championship Trophy
+                CHOICES 0
+
+            LABEL Attempt a low-driven shot
+                SCENE You send a low shot toward the far corner, but the goalkeeper gets down quickly and pushes it wide.
+                HP -20
+                LOOT 5
+                ITEM none
+                CHOICES 0
+
+LABEL Dribble through the center
+    SCENE You weave past two sliding tackles in the muddy midfield, taking a harsh kick to your shin.
+    HP -25
+    LOOT 24
+    ITEM Shin Guards
+    CHOICES 3
+
+    LABEL Shoot from 30 yards out
+        SCENE Your long-range knuckleball swerves wildly and crashes into the upper deck of the stadium. Full time-penalties await.
+        HP -10
+        LOOT 5
+        ITEM none
+        CHOICES 0
+
+    LABEL Thread a through-ball
+        SCENE You slip a clever pass between the center-backs, setting up your teammate for a clean one-on-one finish. Your teammate is completely unmarked.
+        HP -5
+        LOOT 50
+        ITEM Assist Medal
+        CHOICES 1
+
+        LABEL Keep the glory for yourself
+            SCENE You ignore your open teammate and try to score from a difficult angle. The goalkeeper saves your shot, and the opposing team scores on the counterattack.
+            HP -40
+            LOOT 0
+            ITEM none
+            CHOICES 0
+
+    LABEL Dive to win a free kick
+        SCENE The referee sees right through your dramatic fall and flashes a second yellow card! You are sent off!
+        HP -100
+        LOOT 0
+        ITEM Red Card
+        CHOICES 0
+
+    LABEL Showboat with a rainbow flick
+        SCENE You flick the ball cleanly over the defender's heads as the crowd erupts, though the defense quickly recovers shape.
+        HP -10
+        LOOT 50
+        ITEM Highlight Reel
+        CHOICES 2
+
+        LABEL Cut inside on your weak foot
+            SCENE You chop past a lunging defender and curl a tidy finish inside the near post to seal a narrow victory!!
+            HP -20
+            LOOT 20
+            ITEM Winner Medal
+            CHOICES 0
+
+        LABEL Try another nutmeg
+            SCENE The defender reads your trick, steals the ball, and launches a counterattack that scores the winning goal against you!
+            HP -60
+            LOOT 0
+            ITEM none
+            CHOICES 0
